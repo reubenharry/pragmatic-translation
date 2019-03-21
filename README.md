@@ -1,4 +1,4 @@
-# Pragmatic-Image-Captioning
+# Informative Translation
 
 This codebase implements the informative speaker model over the top of a deep neural translation model. It's the code corresponding to this paper: https://arxiv.org/abs/1902.09514
 
