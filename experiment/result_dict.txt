@@ -1,0 +1,1 @@
+{'literal': {'Eine republikanische Strategie gegen die Wiederwahl Obamas': ('Eine', 0.75910753)}, 'incremental pragmatic': {}, 'global pragmatic': {}, 'nonparametric incremental': {}}
