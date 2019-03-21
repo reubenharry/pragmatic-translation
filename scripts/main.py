@@ -4,12 +4,12 @@ from translators.translators import BaseCase, Unfold, Factor_To_Character, Const
 from bayesian_agents.bayesian_pragmatics import Pragmatic
 
 
-# sentences = ["He is wearing glasses.","He wears glasses."]
+sentences = ["He is wearing glasses.","He wears glasses."]
 
 # alpha, in the paper
 rationality = 10.0
 # a pretrained neural translator. Here using a fairseq transformer, but cnn, lstm, rnn etc would work too.
-s0_word = BaseCase(path='wmt16.en-de.joined-dict.transformer',source='en',target='de',bpe_code_path='/bpecodes')
+s0_word = BaseCase(path='models/wmt16.en-de.joined-dict.transformer',source='en',target='de',bpe_code_path='/bpecodes')
 
 sentences = [byte_pair_encoding(sentence=s,code_path=s0_word.bpe_code_path) for s in sentences]
 
@@ -30,7 +30,7 @@ s1_sent_gp = Pragmatic(
 	EXTEND=False)
 
 # a pretrained neural translator. Fairseq again.
-l0_word = BaseCase(path='fconv_wmt_de_en',source='de',target='en',bpe_code_path='/code')
+l0_word = BaseCase(path='models/fconv_wmt_de_en',source='de',target='en',bpe_code_path='/code')
 
 # prefers choosing next word of translation which communicates source sentence over any distractors.
 s1_word = Pragmatic(
