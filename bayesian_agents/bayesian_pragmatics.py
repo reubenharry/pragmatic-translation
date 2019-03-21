@@ -3,7 +3,7 @@ import numpy as np
 import scipy
 import scipy.special
 from utils.config import *
-from translators.translators import Anamorphism
+from translators.translators import Unfold
 from utils.helper_functions import display,byte_pair_encoding,byte_pair_decoding
 
 
@@ -29,10 +29,10 @@ class Pragmatic:
 		self.leftward_model = leftward_model
 
 		if unfolded_leftward_model is None:
-			unfolded_leftward_model = Anamorphism(underlying_model=self.leftward_model)
+			unfolded_leftward_model = Unfold(underlying_model=self.leftward_model)
 		# else: self.bpe_code_path = unfolded_leftward_model.underlying_model.bpe_code_path
 		self.unfolded_leftward_model=unfolded_leftward_model
-		self.unfolded_rightward_model = Anamorphism(underlying_model=self.rightward_model,stop_on=None)
+		self.unfolded_rightward_model = Unfold(underlying_model=self.rightward_model,stop_on=None)
 		self.width=width
 		self.rat=rat
 		self.EXTEND=EXTEND

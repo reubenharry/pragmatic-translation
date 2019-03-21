@@ -1,36 +1,24 @@
 # Pragmatic-Image-Captioning
 
-This codebase implements Bayesian pragmatics (i.e. the Rational Speech Acts model - RSA) over the top of a deep neural image
-captioning model. These are desirable to combine, since RSA gives rise to linguistically realistic effects, while deep models can capture (at least some) of the flexibility and expressivity of natural language.
+This codebase implements the informative speaker model over the top of a deep neural translation model. It's the code corresponding to this paper: https://arxiv.org/abs/1902.09514
 
-Very short summary below, but see notebooks/main.ipynb for a more in-depth overview, or use "ipython main.py" to run the model with some preselected images and a pretrained neural model:
+## To run ##
 
-* Suppose we have a space of possible sentences U
-	
-* Choosing the sentence which is the most informative caption for identifying image w out of a set of images W is a useful task (moreover, it represents a key instance of natural language pragmatics)
+Clone the repo, using git-lfs for the pretrained models.
 
-* Viewed as an inference problem (of a speaker agent P(U|W=w) ), this task is intractable when U is large.
+Run: ipython scripts/examples.py
 
-* But if the space of possible sentences U is recursively generated, there's a solution: at each stage of the recursive generation of a sentence u, we perform a local inference as to the most informative next step
+This file contains each of the models described in the paper.
 
-* Category theoretic perspective (very roughly): this amounts to mapping the inference into the coalgebra of the anamorphism used to generate the distribution over U
+## What it does ##
 
-* Linguistic perspective (very broadly): we're pushing pragmatics into the lower levels of language, rather than adding it on top
+The models in the paper are of the form P(u|w,c) or P(w|u,c), for a source (here English) word or sentence w, a target (here German) word or sentence u, and a sequence of previously generated target language words c (i.e. a partial translation).
 
-* Computational perspective (very ambitiously): this provides us a way to get the power of Bayesian models of pragmatics (see Rational Speech Acts) with deep machine learning models powerful enough to model natural language
+In the code, each model m is a class with methods, e.g.:
 
+* m.forward(source_sentence,sequence): returns distribution over next word/sentence (depending on model)
+* m.likelihood(source_sentence,sequence,output): returns probability of a given word/sentence being produced by m.forward
 
+The models are build in a compositional way, so that, e.g. S1SENTIP is an unfolded, pragmatified speaker and S1SENTGP is a pragmatified unfolded speaker (unfold and pragmatic are operations which don't commute).
 
-Setup:
-
-	To run the model:
-
-		requirements:
-
-			-- python3
-			-- jupyter (if you want to use the notebook)
-
-
-
-
-
+As you'll see if you run examples.py, the more complex models are ludicrously slow. But this isn't (for the most part) a function of my algorithm, so much as the very inefficient way I implemented the wrapper around the PyTorch Fairseq models. My goal was a proof of concept, not a practical system.

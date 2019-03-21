@@ -39,7 +39,7 @@ from utils.sample import to_var,load_image,load_image_from_path
 
 
 
-class Coalgebra:
+class BaseCase:
 
 	def __init__(self,path,source,target,bpe_code_path=None):
 		
@@ -197,7 +197,7 @@ class Coalgebra:
 	@memoize_forward
 	def forward(self,sequence,source_sentence,debug=False):
 
-		# print("CALLING COALGEBRA",source_sentence)
+		# print("CALLING BaseCase",source_sentence)
 		# source_sentence = re.sub("@@ ","",source_sentence).lower()
 		# source_sentence = re.sub("@@@","",source_sentence).lower()
 
@@ -209,10 +209,10 @@ class Coalgebra:
 
 
 
-		# print("DECODED SENTENCE IN COALGEBRA",source_sentence)
+		# print("DECODED SENTENCE IN BaseCase",source_sentence)
 		# print("bpe path",self.bpe_code_path)
 
-		# print("ENCODED SENTENCE IN COALGEBRA",source_sentence)
+		# print("ENCODED SENTENCE IN BaseCase",source_sentence)
 
 
 		from interactive import make_batches, buffered_read
@@ -527,7 +527,7 @@ class Compose:
 
 		self.rightward_model = rightward_model
 		if unfolded_rightward_model is None:
-			unfolded_rightward_model = Anamorphism(underlying_model=self.rightward_model)
+			unfolded_rightward_model = Unfold(underlying_model=self.rightward_model)
 		self.unfolded_rightward_model=unfolded_rightward_model
 		self.leftward_model = leftward_model
 		self.seg_type = leftward_model.seg_type
@@ -602,7 +602,7 @@ class Compose:
 			raise Exception
 		return out
 
-class Anamorphism:
+class Unfold:
 
 	def __init__(self,underlying_model,beam_width=1,diverse=False,stop_on=None):
 		
