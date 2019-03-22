@@ -1,14 +1,1 @@
-experiment/results/*
-distractors.pkl
-fconv*
-wmt*
-iwslt14.tokenized.de-en/*
-wmt14.en-de.fconv-py/*
-wslt14.tokenized.de-en/*
-wmt14.en-fr.fconv-py/*
-data/*
-deprecated/*
-testvenv/*
-train/image_captioning/*
 *.pyc
-train/shakespeare.pt
