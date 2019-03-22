@@ -1,2 +1,10 @@
 models/fconv_wmt_de_en filter=lfs diff=lfs merge=lfs -text
 models/wmt16.en-de.joined-dict.transformer filter=lfs diff=lfs merge=lfs -text
+models/fconv_wmt_de_en/dict.de.txt filter=lfs diff=lfs merge=lfs -text
+models/wmt16.en-de.joined-dict.transformer/bpecodes filter=lfs diff=lfs merge=lfs -text
+models/wmt16.en-de.joined-dict.transformer/dict.de.txt filter=lfs diff=lfs merge=lfs -text
+models/wmt16.en-de.joined-dict.transformer/dict.en.txt filter=lfs diff=lfs merge=lfs -text
+models/wmt16.en-de.joined-dict.transformer/model.pt filter=lfs diff=lfs merge=lfs -text
+models/fconv_wmt_de_en/code filter=lfs diff=lfs merge=lfs -text
+models/fconv_wmt_de_en/dict.en.txt filter=lfs diff=lfs merge=lfs -text
+models/fconv_wmt_de_en/model.pt filter=lfs diff=lfs merge=lfs -text
