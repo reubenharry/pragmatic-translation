@@ -1,6 +1,5 @@
 experiment/results/*
 distractors.pkl
-models/*
 fconv*
 wmt*
 iwslt14.tokenized.de-en/*
